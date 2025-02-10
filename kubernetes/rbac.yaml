@@ -27,6 +27,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: ingress-home
+    namespace: ingress-home
 roleRef:
   kind: Role
   name: ingress-reader
