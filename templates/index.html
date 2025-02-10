@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>inf-k8s.net</title>
+  </head>
+  <body>
+    <ul id="navigation">
+      {% for groups in grouped_urls %}
+      <li>
+        <h3>{{ groups.name }}</h3>
+
+        <ul>
+          {% for url in groups.urls %}
+          <li>
+            <a href="https://{{ url }}">{{ url }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>

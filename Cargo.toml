@@ -1,0 +1,19 @@
+[package]
+name = "ingress-home"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+kube = { version = "0.98.0", features = ["runtime", "derive"] }
+k8s-openapi = { version = "0.24.0", features = ["latest"] }
+askama = "0.12.1"
+axum = "0.8.1"
+tokio = { version = "1.43.0", features = [
+    "macros",
+    "rt-multi-thread",
+] }
+tracing = "0.1.41"
+tracing-subscriber = "0.3.19"
+anyhow = "1.0.95"
+tower-http = { version = "0.6.2", features = ["trace"] }
+itertools = "0.14.0"

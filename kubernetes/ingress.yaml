@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-home
+  namespace: ingress-home
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: inf-k8s.net
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ingress-home
+                port:
+                  number: 80
+  tls:
+    - secretName: inf-k8s-tls
+      hosts:
+        - inf-k8s.net

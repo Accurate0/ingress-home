@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ingress-home
+  namespace: ingress-home
+spec:
+  selector:
+    matchLabels:
+      app: ingress-home
+  replicas: 1
+  strategy:
+    type: Recreate
+
+  template:
+    metadata:
+      labels:
+        app: ingress-home
+    spec:
+      tolerations:
+        - key: "group"
+          operator: "Equal"
+          value: "external"
+          effect: "NoSchedule"
+      containers:
+        - name: ingress-home
+          image: ingress-home:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
