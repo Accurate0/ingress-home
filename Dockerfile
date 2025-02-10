@@ -40,4 +40,4 @@ RUN mkdir ./config
 
 RUN ln -s /usr/local/bin/${BINARY_NAME} executable
 ENTRYPOINT ["./executable"]
-EXPOSE 8000/tcp
+EXPOSE 3000/tcp
