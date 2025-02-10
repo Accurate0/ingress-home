@@ -8,9 +8,6 @@ spec:
     matchLabels:
       app: ingress-home
   replicas: 1
-  strategy:
-    type: Recreate
-
   template:
     metadata:
       labels:
