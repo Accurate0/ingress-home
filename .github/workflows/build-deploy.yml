@@ -17,8 +17,7 @@ jobs:
 
   deploy:
     needs:
-      - build-web
-      - build-backend
+      - build
     uses: Accurate0/workflows/.github/workflows/deploy-app-k8s.yaml@main
     with:
       application-name: ingress-home
