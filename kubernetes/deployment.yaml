@@ -16,6 +16,7 @@ spec:
       labels:
         app: ingress-home
     spec:
+      serviceAccountName: ingress-home
       tolerations:
         - key: "group"
           operator: "Equal"
