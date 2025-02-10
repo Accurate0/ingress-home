@@ -29,5 +29,5 @@ subjects:
     name: ingress-home
     namespace: ingress-home
 roleRef:
-  kind: Role
+  kind: ClusterRole
   name: ingress-reader
