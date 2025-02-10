@@ -16,8 +16,6 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: ingress-home
-    apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: Role
   name: ingress-reader
-  apiGroup: rbac.authorization.k8s.io
