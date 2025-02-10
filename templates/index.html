@@ -1,23 +1,53 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      #root {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        position: relative;
+      }
+
+      html,
+      body {
+        font-family: "Manrope", sans-serif;
+        overflow-x: hidden;
+      }
+
+      a {
+        text-decoration: none;
+        color: blue;
+      }
+    </style>
     <title>inf-k8s.net</title>
   </head>
   <body>
-    <ul id="navigation">
+    <div id="root">
       {% for groups in grouped_urls %}
-      <li>
-        <h3>{{ groups.name }}</h3>
-
-        <ul>
-          {% for url in groups.urls %}
-          <li>
-            <a href="https://{{ url }}">{{ url }}</a>
-          </li>
-          {% endfor %}
-        </ul>
-      </li>
+      <h3>{{ groups.name }}</h3>
+      <ul>
+        {% for url in groups.urls %}
+        <li>
+          <a class="ext-link" href="https://{{ url }}" target="_blank">
+            {{ url }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
       {% endfor %}
-    </ul>
+    </div>
   </body>
 </html>
