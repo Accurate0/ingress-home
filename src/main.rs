@@ -10,6 +10,7 @@ use itertools::Itertools;
 use k8s_openapi::api::networking::v1::Ingress;
 use kube::{api::ListParams, Api, ResourceExt};
 use tower_http::{
+    services::ServeDir,
     trace::{DefaultOnRequest, DefaultOnResponse, TraceLayer},
     LatencyUnit,
 };
@@ -84,6 +85,8 @@ async fn index(State(state): State<AppState>) -> Result<Html<String>, AppError> 
         (namespace, urls)
     });
 
+    tracing::info!("found {} ingress resources", url_namespace_tuple.len());
+
     let mut urls = url_namespace_tuple
         .into_group_map_by(|(namespace, _)| namespace.to_string())
         .iter()
@@ -115,7 +118,8 @@ async fn main() -> anyhow::Result<()> {
             let matched_path = request
                 .extensions()
                 .get::<MatchedPath>()
-                .map(MatchedPath::as_str);
+                .map(MatchedPath::as_str)
+                .unwrap_or_else(|| request.uri().path());
 
             tracing::info_span!("request", uri = matched_path)
         })
@@ -130,6 +134,7 @@ async fn main() -> anyhow::Result<()> {
 
     let app = Router::new()
         .route("/", get(index))
+        .nest_service("/static/css", ServeDir::new("static/css"))
         .layer(trace_layer)
         .with_state(AppState { client });
 

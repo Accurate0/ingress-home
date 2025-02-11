@@ -1,4 +1,4 @@
-ARG RUST_VERSION=1.81.0
+ARG RUST_VERSION=1.84.0
 ARG BINARY_NAME
 
 FROM rust:${RUST_VERSION}-slim-bookworm AS builder
@@ -36,6 +36,7 @@ RUN apt-get update && apt-get install -y curl
 USER appuser
 
 WORKDIR /opt/${BINARY_NAME}
+COPY static static
 RUN mkdir ./config
 
 RUN ln -s /usr/local/bin/${BINARY_NAME} executable

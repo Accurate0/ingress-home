@@ -15,5 +15,5 @@ tokio = { version = "1.43.0", features = [
 tracing = "0.1.41"
 tracing-subscriber = "0.3.19"
 anyhow = "1.0.95"
-tower-http = { version = "0.6.2", features = ["trace"] }
+tower-http = { version = "0.6.2", features = ["fs", "trace"] }
 itertools = "0.14.0"
