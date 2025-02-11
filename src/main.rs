@@ -107,6 +107,10 @@ async fn index(State(state): State<AppState>) -> Result<Html<String>, AppError> 
     Ok(axum::response::Html(index_template.render()?))
 }
 
+async fn health() -> &'static str {
+    "ok"
+}
+
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
     tracing_subscriber::fmt::init();
@@ -134,6 +138,7 @@ async fn main() -> anyhow::Result<()> {
 
     let app = Router::new()
         .route("/", get(index))
+        .route("/health", get(health))
         .nest_service("/static/css", ServeDir::new("static/css"))
         .layer(trace_layer)
         .with_state(AppState { client });
